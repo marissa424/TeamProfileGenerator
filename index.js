@@ -35,7 +35,7 @@ const inquirer = () => {
         },
     ])
     .then(answers => {
-        makeProfile(answers, 'manager')
+        makeProfile(answers, 'Manager')
     }).then(()=> {
         nextEmployee()
     })
@@ -177,7 +177,7 @@ const makeProfile = async (answers, position) => {
 
 // create manager card
 const makeManager = (answers) => {
-    let manager = new manager(answers)
+    let manager = new Manager(answers)
     let office = `Office Number: ${manager.getOffice()}`
     let card = createCard(manager.getName(), manager.getRole(), manager.getId(), manager.getEmail(), office);
     return new Promise ((resolve, reject) => {
@@ -205,7 +205,7 @@ const makeEngineer = async (answers) => {
 
 // create intern card
 const makeIntern = (answers) => {
-    let intern = new intern(answers);
+    let intern = new Intern(answers);
     let school = `School: ${intern.getSchool()}`;
     let card = createCard(intern.getName(), intern.getRole(), intern.getId(), intern.getEmail(), school);
     return new Promise((resolve, reject) => {
