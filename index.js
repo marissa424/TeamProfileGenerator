@@ -140,7 +140,7 @@ let html = `<html lang="en">
     <title>Team Profile</title>
 </head>
 <body>
-    <h1 class="text-center header w-100 py-4 align-middle" style="background-color: rgba(0,0,255,.1)">My Team</h1>
+<h1 class="text-center header w-100 py-4 align-middle" style="color: white; background-color: rgba(219, 68, 68, 0.823)">My Team</h1>
     <sec class="d-flex flex-row flex-wrap justify-content-around align-items-center">`;
 
 // end of html script
@@ -152,15 +152,15 @@ const endHtml = `
 // adding formatting to cards
 const createCard = (name, position, id, email, thirdItem) => {
   let card = `
-    <div class="card my-2" style="width: 18rem;">
-    <div class="card-body" style="background-color: rgba(0,0,255,.1)">
+    <div class="card my-2" style="width: 18rem; box-shadow: 5px 5px 8px #888888; margin: 5px; ">
+    <div class="card-body" style="color: white; background-color: rgba(27, 113, 233, 0.936)">
         <h5 class="card-title">${name}</h5>
         <p class="card-text">${position}</p>
     </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Id: ${id}</li>
-        <li class="list-group-item">email: <a href = "mailto: ${email}">${email}</a></li>
-        <li class="list-group-item">${thirdItem}</li>
+      <ul class="list-group list-group-flush" style="margin: 40px 20px 40px 20px;">
+        <li class="list-group-item" style="background-color:rgba(183, 179, 179, 0.398)">ID: ${id}</li>
+        <li class="list-group-item" style="background-color:rgba(183, 179, 179, 0.398)">Email: <a href = "mailto: ${email}">${email}</a></li>
+        <li class="list-group-item" style="background-color:rgba(183, 179, 179, 0.398)">${thirdItem}</li>
       </ul>
     </div>`;
   return card;
