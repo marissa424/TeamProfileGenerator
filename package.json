@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/marissa424/TeamProfileGenerator/issues"
   },
-  "homepage": "https://github.com/marissa424/TeamProfileGenerator#readme"
+  "homepage": "https://github.com/marissa424/TeamProfileGenerator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
