@@ -1,27 +1,17 @@
 {
-  "name": "teamprofilegenerator",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marissa424/TeamProfileGenerator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/marissa424/TeamProfileGenerator/issues"
-  },
-  "homepage": "https://github.com/marissa424/TeamProfileGenerator#readme",
-  "dependencies": {
-    "inquirer": "^8.2.4"
+    "name": "team-profile-generator",
+    "version": "1.0.0",
+    "description": "Generates a team roster in html from command the command line",
+    "main": "index.js",
+    "dependencies": {
+      "inquirer": "^8.2.4"
+    }, 
+    "scripts": {
+      "test": "jest"
+    },
+    "author": "marissat",
+    "license": "MIT",
+    "devDependencies": {
+      "jest": "^24.9.0"
+    }
   }
-}

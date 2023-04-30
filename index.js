@@ -1,126 +1,136 @@
-// Packages need for app
-const inquirer = require('inquirer');
-const path = require('path');
-const fs = require('fs');
+//Packages need for app 
+const inquirer = require("inquirer");
+const path = require("path");
+const fs = require("fs");
 
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 // Asks about manager information
-const inquirer = () => {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please enter your team managers name',
-        },
+const inquire = () => {
+  inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please enter your team manager's name",
+      },
 
-        {
-            type: 'input',
-            name: 'id',
-            message: 'Please enter your team managers ID',
-        },
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter your team manager's employee ID",
+      },
 
-        {
-            type: 'input',
-            name: 'email',
-            message: 'Please enter your team managers email',
-        },
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter your team manager's email address",
+      },
 
-        {
-            type: 'input',
-            name: 'office',
-            message: 'Please enter your team managers office number',
-        },
+      {
+        type: "input",
+        name: "office",
+        message: "Please enter your team manager's office number",
+      },
     ])
-    .then(answers => {
-        makeProfile(answers, 'Manager')
-    }).then(()=> {
-        nextEmployee()
-    })
-}
+    .then((answers) => {
+      makeProfile(answers, "manager");
+    }).then(() => {
+      nextEmployee();
+    });
+};
 
-// Promt asking what the next employee type is
+// Ask what next employee type is or add no more employees
 const nextEmployee = () => {
-    inquirer.prompt([
-        {
-            type: 'list',
-            name: 'position',
-            message: 'Would you like to add another employee?',
-            choices: ['engineer', 'intern', 'no more employees'],
-        }
-    ]).then(answers => {
-        promptNextEmployee(answers)
-    })
-}
+  inquirer.prompt([
+      {
+        type: "list",
+        name: "position",
+        message: "Would you like to add another employee?",
+        choices: ["engineer", "intern", "no more employees"],
+      },
+    ]).then((answers) => {
+      promptNextEmployee(answers);
+    });
+};
 
-// depending on employee 
-const promptNextEmployee = answers => {
-    if (answers.position == 'engineer') {
-        askEngineer()
-    } else if (answers.position == 'intern') {
-        askIntern()
-    } else {
-        finishHtml(html)
-    }
-}
+// given employee position, asks questions
+const promptNextEmployee = (answers) => {
+  if (answers.position == "engineer") {
+    askEngineer();
+  } else if (answers.position == "intern") {
+    askIntern();
+  } else {
+    finishHtml(html);
+  }
+};
 
-// ask engineer follow up questions
+// asks engineer follow up questions, then asks for next employee
 const askEngineer = () => {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please input your engineers name',
+  inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please enter your engineer's name",
+      },
 
-            type: 'input',
-            name: 'id',
-            message: 'Please input your engineers ID',
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter your engineer's employee ID",
+      },
 
-            type: 'input',
-            name: 'email',
-            message: 'Please input your engineers email',
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter your engineer's email address",
+      },
 
-            type: 'input',
-            name: 'github',
-            message: 'Please input your engineers github username',
-        }
-    ]).then(answers => {
-        makeProfile(answers, "engineer")
-        nextEmployee()
-    })
-}
+      {
+        type: "input",
+        name: "github",
+        message: "Please enter your engineer's Github username",
+      },
+    ]).then((answers) => {
+      makeProfile(answers, "engineer");
+      nextEmployee();
+    });
+};
 
-// ask intern follow up questions 
-
+// asks intern follow up questions, then asks for next employee
 const askIntern = () => {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please input your interns name',
+  inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please enter your intern's name",
+      },
 
-            type: 'input',
-            name: 'id',
-            message: 'Please input your interns ID',
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter your intern's employee ID",
+      },
 
-            type: 'input',
-            name: 'email',
-            message: 'Please input your interns email',
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter your intern's email address",
+      },
 
-            type: 'input',
-            name: 'github',
-            message: 'Please input your interns school',
-        }
-    ]).then(answers => {
-        makeProfile(answers, "intern")
-        nextEmployee()
-    })
-}
+      {
+        type: "input",
+        name: "school",
+        message: "Please enter your intern's school",
+      },
+    ]).then((answers) => {
+      makeProfile(answers, "intern");
+      nextEmployee();
+    });
+};
 
 // Generate HTML
-
 let html = `<html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -132,16 +142,16 @@ let html = `<html lang="en">
 <body>
     <h1 class="text-center header w-100 py-4 align-middle" style="background-color: rgba(0,0,255,.1)">My Team</h1>
     <sec class="d-flex flex-row flex-wrap justify-content-around align-items-center">`;
- 
+
 // end of html script
 const endHtml = `
 </sec>    
 </body>
     </html>`;
 
-// card formatting function
+// adding formatting to cards
 const createCard = (name, position, id, email, thirdItem) => {
-    let card = `
+  let card = `
     <div class="card my-2" style="width: 18rem;">
     <div class="card-body" style="background-color: rgba(0,0,255,.1)">
         <h5 class="card-title">${name}</h5>
@@ -153,77 +163,86 @@ const createCard = (name, position, id, email, thirdItem) => {
         <li class="list-group-item">${thirdItem}</li>
       </ul>
     </div>`;
-    return card
+  return card;
+};
 
-}
-
-// choose card type by job title
+// make card by job title
 const makeProfile = async (answers, position) => {
-    let card;
-    if (position == 'manager') {
-         card = await makeManager(answers)
-    } else if (position == 'engineer') {
-        card = await makeEngineer(answers)
-    } else if (position == 'intern') {
-        card = await makeIntern(answers)
-    } else {
-        let err = new Error("Can't find employee position");
-        console.error(err)
-    }
-    
-    html = `${html}
+  let card;
+  if (position == "manager") {
+    card = await makeManager(answers);
+  } else if (position == "engineer") {
+    card = await makeEngineer(answers);
+  } else if (position == "intern") {
+    card = await makeIntern(answers);
+  } else {
+    let err = new Error("Can't find employee position");
+    console.error(err);
+  }
+
+  html = `${html}
     ${card}`;
-}
+};
 
 // create manager card
 const makeManager = (answers) => {
-    let manager = new Manager(answers)
-    let office = `Office Number: ${manager.getOffice()}`
-    let card = createCard(manager.getName(), manager.getRole(), manager.getId(), manager.getEmail(), office);
-    return new Promise ((resolve, reject) => {
-        resolve(card)
-    })
-    
-
-}
-
-// create engineer card
-const makeEngineer = async (answers) => {
-    let github
-    let card
-    let engineer = new Engineer(answers);
-    // make this into a promise
-    let link = await engineer.getGithub();
-    github = `Github: <a href='${link}' target=_blank>${engineer.getGithubName()}</a>`;
-    card = createCard(engineer.getName(), engineer.getRole(), engineer.getId(), engineer.getEmail(), github);
-
-    return new Promise((resolve, reject) => {
-        resolve(card)
-    })
-    
-}
+  let manager = new Manager(answers);
+  let office = `Office Number: ${manager.getOffice()}`;
+  let card = createCard(
+    manager.getName(),
+    manager.getRole(),
+    manager.getId(),
+    manager.getEmail(),
+    office
+  );
+  return new Promise((resolve, reject) => {
+    resolve(card);
+  });
+};
 
 // create intern card
 const makeIntern = (answers) => {
     let intern = new Intern(answers);
     let school = `School: ${intern.getSchool()}`;
-    let card = createCard(intern.getName(), intern.getRole(), intern.getId(), intern.getEmail(), school);
+    let card = createCard(
+      intern.getName(),
+      intern.getRole(),
+      intern.getId(),
+      intern.getEmail(),
+      school
+    );
     return new Promise((resolve, reject) => {
-        resolve(card)
-    })
-}
+      resolve(card);
+    });
+  };
+
+// create engineer card
+const makeEngineer = async (answers) => {
+  let github;
+  let card;
+  let engineer = new Engineer(answers);
+  let link = await engineer.getGithub();
+  github = `Github: <a href='${link}' target=_blank>${engineer.getGithubName()}</a>`;
+  card = createCard(
+    engineer.getName(),
+    engineer.getRole(),
+    engineer.getId(),
+    engineer.getEmail(),
+    github
+  );
+
+  return new Promise((resolve, reject) => {
+    resolve(card);
+  });
+};
 
 // write html to file
 const finishHtml = (html) => {
-    html = `${html}
-    ${(endHtml)}`;
-    fs.writeFile(path.join(__dirname, '/dist/index.html'), html, (err) =>
-    err ? console.error(err) : console.log('Success!')
-    );
-}
+  html = `${html}
+    ${endHtml}`;
+  fs.writeFile(path.join(__dirname, "/dist/index.html"), html, (err) =>
+    err ? console.error(err) : console.log("Success New Profile Made!")
+  );
+};
 
-
-// Run script
-
-inquirer()
-
+inquire();
